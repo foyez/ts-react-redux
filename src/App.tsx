@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
 
-function App() {
+import { useDispatch, useSelector } from 'react-redux'
+import { getTodos } from 'selectors'
+import { loadTodos } from 'slices/todo'
+
+const App: React.FC = () => {
+  const { todos } = useSelector(getTodos)
+
+  const dispatch = useDispatch()
+
+  const _loadTodos = () => dispatch(loadTodos())
+
+  useEffect(() => {
+    _loadTodos()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {todos.slice(0, 10).map((todo) => {
+        return <h5 key={todo.id}>{todo.title}</h5>
+      })}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
