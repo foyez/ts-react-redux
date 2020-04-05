@@ -1,3 +1,3 @@
 import { RootState } from 'types'
 
-export const getTodos = (state: RootState) => state.todoState
+export const selectTodos = (state: RootState) => state.todoState
