@@ -30,4 +30,4 @@ export const {
   loadTodosSuccess,
   loadTodosFailure,
 } = todoSlice.actions
-export default todoSlice.reducer
+export const todoReducer = todoSlice.reducer

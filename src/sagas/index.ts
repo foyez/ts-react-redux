@@ -1,5 +1,6 @@
 import { put, all, takeLatest } from 'redux-saga/effects'
-import axios from 'axios'
+
+import { TodoApi } from 'api'
 
 import { loadTodos, loadTodosSuccess, loadTodosFailure } from 'slices/todo'
 
@@ -8,7 +9,7 @@ import { loadTodos, loadTodosSuccess, loadTodosFailure } from 'slices/todo'
  */
 function* fetchTodos() {
   try {
-    const res = yield axios.get('https://jsonplaceholder.typicode.com/todos')
+    const res = yield TodoApi.getTodos()
 
     yield put(loadTodosSuccess(res.data))
   } catch (error) {
